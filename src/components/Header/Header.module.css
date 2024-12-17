@@ -1,0 +1,19 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top : 0;
+    left: 0;
+    border-bottom: 1px solid gray;
+    z-index: 99999;
+    background: black;
+}
+
+.logoBlock > img{
+    width: 70px;
+}
+
+.basketBlock{
+
+}
