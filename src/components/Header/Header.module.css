@@ -17,3 +17,9 @@ header{
 .basketBlock{
 
 }
+
+.basketBlock > a > svg {
+    color : cyan;
+    font-size: 25px;
+    cursor: pointer;
+}
