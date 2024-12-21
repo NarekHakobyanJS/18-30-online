@@ -1,18 +1,11 @@
 import React from 'react'
+import BasketProduct from '../../components/BasketProduct/BasketProduct'
 import style from './CartPage.module.css'
 
-const CartPage = ({carts}) => {
+const CartPage = ({carts, changeCart}) => {
   return (
     <div>
-      {
-        carts.map((cart) => {
-          return <>
-          <h1>{cart.title}</h1>
-          <b>{cart.count}</b>
-          <h1>{cart.cartPrice}</h1>
-          </>
-        })
-      }
+      <BasketProduct carts={carts} changeCart={changeCart}/>
     </div>
   )
 }

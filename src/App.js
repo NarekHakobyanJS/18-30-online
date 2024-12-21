@@ -14,6 +14,7 @@ function App() {
   const [products, setProducts] = useState([])
   const [carts, setCarts] = useState([])
 
+  
 
 
   useEffect(() => {
@@ -28,9 +29,6 @@ function App() {
   }, [])
 
   const addToCart = (item) => {
-    /// 1 20 
-    // 3 
-    // 3 === 3
     let isBool = true
 
     carts.forEach((el) => {
@@ -60,16 +58,29 @@ function App() {
 
   }
 
-  console.log(carts);
+
+  const changeCart = (count, id) => {
+    setCarts(carts.map((cart) => {
+      if(cart.id === id){
+        return {
+          ...cart,
+          count : count,
+          cartPrice : cart.price * count
+        }
+      }else {
+        return cart
+      }
+    }))
+  }
 
 
 
   return (
     <div className="App">
-      <Header />
+      <Header carts={carts}/>
       <Routes>
         <Route path='/' element={<Home products={products} addToCart={addToCart} />} />
-        <Route path='/cart' element={<CartPage carts={carts} />} />
+        <Route path='/cart' element={<CartPage carts={carts} changeCart={changeCart}/>} />
       </Routes>
     </div>
   );
