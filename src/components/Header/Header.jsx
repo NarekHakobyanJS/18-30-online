@@ -2,13 +2,17 @@ import React from 'react'
 import style from './Header.module.css'
 import logo from '../../assets/logo.png'
 import { NavLink } from 'react-router-dom'
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaUserSecret } from "react-icons/fa";
 
-const Header = ({carts}) => {
+
+const Header = ({ carts }) => {
   return (
     <header className={style.header}>
       <div className={style.logoBlock}>
-        <img src={logo} />
+        <NavLink to='/'>
+          <img src={logo} />
+        </NavLink>
+
       </div>
       <nav>
 
@@ -17,6 +21,9 @@ const Header = ({carts}) => {
         <NavLink to='/cart'>
           <FaShoppingCart />
           <sup>{carts.length}</sup>
+        </NavLink>
+        <NavLink to='/login'>
+        <FaUserSecret />
         </NavLink>
        
       </div>
