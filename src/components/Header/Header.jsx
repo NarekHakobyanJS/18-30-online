@@ -18,7 +18,7 @@ const Header = ({ carts }) => {
 
       </nav>
       <div className={style.basketBlock}>
-        <NavLink to='/cart'>
+        <NavLink to={carts.length === 0 ? '' : '/cart'}>
           <FaShoppingCart />
           <sup>{carts.length}</sup>
         </NavLink>

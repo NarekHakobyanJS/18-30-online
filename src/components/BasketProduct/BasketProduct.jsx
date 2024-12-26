@@ -3,12 +3,12 @@ import style from './BasketProduct.module.css'
 import Basket from './Basket'
 import OrederForm from '../OrderForm/OrederForm'
 
-function BasketProduct({carts, changeCart, totalPrice}) {
+function BasketProduct({carts, changeCart, totalPrice, removeItemToCart}) {
   return (
     <div>
       {
        carts.map((product) => {
-          return <Basket product={product} changeCart={changeCart} key={product.id}/>
+          return <Basket removeItemToCart={removeItemToCart} product={product} changeCart={changeCart} key={product.id}/>
         })
       }
       {

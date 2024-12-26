@@ -1,7 +1,7 @@
 import style from './BasketProduct.module.css'
 import React, { useState } from 'react'
 
-const Basket = ({product,  changeCart}) => {
+const Basket = ({product,  changeCart, removeItemToCart}) => {
     let [count, setCount] = useState(product.count)
 
     const plusCount = () => {
@@ -28,6 +28,7 @@ const Basket = ({product,  changeCart}) => {
                 </div>
                 <span>{`Total: ${product.cartPrice}$`}</span>
             </div>
+            <button onClick={() => removeItemToCart(product.id)} className={style.remove}>X</button>
         </div>
     )
 }
