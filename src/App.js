@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios'
 
@@ -18,6 +18,17 @@ export const instance = axios.create({
 function App() {
   const [products, setProducts] = useState([])
   const [carts, setCarts] = useState([])
+  const localStroageRef = useRef(false)
+
+
+
+
+  useEffect(() => {
+    if(localStroageRef.current) {
+      localStorage.setItem('carts', JSON.stringify(carts))
+    }
+    localStroageRef.current = true
+  }, [carts])
 
   const [isFetching, setIsFetching] = useState(false)
 
@@ -25,6 +36,9 @@ function App() {
     { id: "1", name: "Avetiq", email: "avo@gmail.com", password: "1234" },
     { id: "2", name: "Kar", email: "kar@gmail.com", password: "1234" },
   ])
+
+
+  const cartss = JSON.parse(localStorage.getItem('carts'))
 
   // Users Logic
   const addUsers = (user) => {
@@ -59,7 +73,11 @@ function App() {
       })
   }, [])
 
+
+
   const addToCart = (item) => {
+  
+    
     let isBool = true
 
     carts.forEach((el) => {
@@ -110,10 +128,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header carts={carts} />
+      <Header carts={cartss} />
       <Routes>
         <Route path='/' element={<Home isFetching={isFetching} products={products} addToCart={addToCart} />} />
-        <Route path='/cart' element={<CartPage removeItemToCart={removeItemToCart} carts={carts} changeCart={changeCart} totalPrice={totalPrice} />} />
+        <Route path='/cart' element={<CartPage removeItemToCart={removeItemToCart} carts={cartss} changeCart={changeCart} totalPrice={totalPrice} />} />
         <Route path='/:id' element={<ProductPage loading={loading} isFetching={isFetching} addToCart={addToCart} />} />
         <Route path='/login' element={<Login users={users} />} />
         <Route path='/profile/:id' element={<Profile />} />

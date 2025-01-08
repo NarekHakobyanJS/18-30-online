@@ -4,6 +4,7 @@ import {Navigate} from 'react-router-dom'
 import style from './CartPage.module.css'
 
 const CartPage = ({carts, changeCart, totalPrice, removeItemToCart }) => {
+  
   return (
     <div>
       {

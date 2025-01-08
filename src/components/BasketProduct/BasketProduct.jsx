@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './BasketProduct.module.css'
 import Basket from './Basket'
 import OrederForm from '../OrderForm/OrederForm'
 
 function BasketProduct({carts, changeCart, totalPrice, removeItemToCart}) {
+
+   
+
+  
   return (
     <div>
       {
