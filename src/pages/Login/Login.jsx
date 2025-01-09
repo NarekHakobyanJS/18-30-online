@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Formik, Field, Form } from 'formik'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { MyContext } from '../../context'
 
-const Login = ({users}) => {
+const Login = () => {
+    const {users} = useContext(MyContext)
     const navigate = useNavigate()
     const userValidation = (values) => {
        const user = users.find((u) => u.email === values.email)

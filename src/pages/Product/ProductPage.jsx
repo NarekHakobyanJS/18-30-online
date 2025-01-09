@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { instance } from '../../App'
 import Loading from '../../components/Loading/Loading'
 import ByeToCart from '../../components/ByeToCart/ByeToCart'
+import { MyContext } from '../../context'
 
-const ProductPage = ({isFetching, loading, addToCart}) => {
+const ProductPage = () => {
 
   const [product, setProduct] = useState(null)
   const {id} = useParams()
+  const {isFetching, loading, addToCart} = useContext(MyContext)
+  
   useEffect(() => {
     loading(true)
     instance.get(`/products/${id}`)

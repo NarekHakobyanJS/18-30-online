@@ -2,13 +2,13 @@ import React from 'react'
 import style from './Home.module.css'
 import Products from '../../components/Products/Products'
 
-const Home = ({products, addToCart, isFetching}) => {
+const Home = () => {
 
   
   return (
     <div>
         <div>
-            <Products isFetching={isFetching} products={products} addToCart={addToCart}/>
+            <Products />
         </div>
     </div>
   )

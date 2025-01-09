@@ -10,6 +10,8 @@ import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Register from './pages/Register/Register';
 
+import { MyContext } from './context';
+
 import './App.css';
 export const instance = axios.create({
   baseURL: 'https://fakestoreapi.com',
@@ -20,11 +22,8 @@ function App() {
   const [carts, setCarts] = useState([])
   const localStroageRef = useRef(false)
 
-
-
-
   useEffect(() => {
-    if(localStroageRef.current) {
+    if (localStroageRef.current) {
       localStorage.setItem('carts', JSON.stringify(carts))
     }
     localStroageRef.current = true
@@ -76,8 +75,8 @@ function App() {
 
 
   const addToCart = (item) => {
-  
-    
+
+
     let isBool = true
 
     carts.forEach((el) => {
@@ -125,18 +124,31 @@ function App() {
     setCarts(carts.filter((cart) => cart.id !== id))
   }
 
-
+  const value =  {
+    cartss,
+    isFetching,
+    products,
+    addToCart,
+    removeItemToCart,
+    changeCart,
+    totalPrice, 
+    loading,
+    users,
+    addUsers
+  }
   return (
     <div className="App">
-      <Header carts={cartss} />
-      <Routes>
-        <Route path='/' element={<Home isFetching={isFetching} products={products} addToCart={addToCart} />} />
-        <Route path='/cart' element={<CartPage removeItemToCart={removeItemToCart} carts={cartss} changeCart={changeCart} totalPrice={totalPrice} />} />
-        <Route path='/:id' element={<ProductPage loading={loading} isFetching={isFetching} addToCart={addToCart} />} />
-        <Route path='/login' element={<Login users={users} />} />
-        <Route path='/profile/:id' element={<Profile />} />
-        <Route path='/register' element={<Register addUsers={addUsers} />} />
-      </Routes>
+      <MyContext.Provider value={value}>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/cart' element={<CartPage />} />
+          <Route path='/:id' element={<ProductPage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profile/:id' element={<Profile />} />
+          <Route path='/register' element={<Register />} />
+        </Routes>
+      </MyContext.Provider>
     </div>
   );
 }

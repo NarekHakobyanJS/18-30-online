@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import style from './Header.module.css'
 import logo from '../../assets/logo.png'
 import { NavLink } from 'react-router-dom'
 import { FaShoppingCart, FaUserSecret } from "react-icons/fa";
+import { MyContext } from '../../context';
 
 
-const Header = ({ carts }) => {
+const Header = () => {
+  const {cartss} = useContext(MyContext)
+  
+  
   return (
     <header className={style.header}>
       <div className={style.logoBlock}>
@@ -18,9 +22,9 @@ const Header = ({ carts }) => {
 
       </nav>
       <div className={style.basketBlock}>
-        <NavLink to={carts.length === 0 ? '' : '/cart'}>
+        <NavLink to={cartss.length === 0 ? '' : '/cart'}>
           <FaShoppingCart />
-          <sup>{carts.length}</sup>
+          <sup>{cartss.length}</sup>
         </NavLink>
         <NavLink to='/login'>
         <FaUserSecret />

@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext} from 'react'
 import style from './BasketProduct.module.css'
 import Basket from './Basket'
 import OrederForm from '../OrderForm/OrederForm'
+import { MyContext } from '../../context'
 
-function BasketProduct({carts, changeCart, totalPrice, removeItemToCart}) {
+function BasketProduct() {
 
-   
+  const { cartss, changeCart, totalPrice, removeItemToCart } = useContext(MyContext)
 
-  
+
+
   return (
     <div>
       {
-       carts.map((product) => {
-          return <Basket removeItemToCart={removeItemToCart} product={product} changeCart={changeCart} key={product.id}/>
+        cartss.map((product) => {
+          return <Basket
+            removeItemToCart={removeItemToCart}
+            product={product}
+            changeCart={changeCart}
+            key={product.id} />
         })
       }
       {
-        totalPrice ?  <h2>TotalPrice ... {totalPrice}$ </h2>: ''
+        totalPrice ? <h2>TotalPrice ... {totalPrice}$ </h2> : ''
       }
-     <OrederForm />
+      <OrederForm />
     </div>
   )
 }

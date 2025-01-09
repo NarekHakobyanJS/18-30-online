@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Formik, Field, Form } from 'formik'
 
 import './Register.css'
 import { useNavigate } from 'react-router-dom'
+import { MyContext } from '../../context'
 
-const Register = ({ addUsers }) => {
+const Register = () => {
+    const { addUsers} = useContext(MyContext)
     const navigate = useNavigate()
 
     const validUser = (user) => {
